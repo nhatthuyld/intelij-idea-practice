@@ -3,18 +3,16 @@ package testng;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import package1.DriverFactory;
-import sun.reflect.misc.FieldUtil;
+
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+
 import java.io.File;
 
 public class MyFirstTest {
@@ -36,7 +34,8 @@ public class MyFirstTest {
 
     @Test
     public  void TakeScreenshottoFile ()throws IOException {
-        takeScreenShort(driver, "C:\\selenium\\intelij-idea-practice-master\\image.pnj");
+//        takeScreenShoot(driver, "/Users/woodpecker/Documents/Misc/intelij-idea-practice//image.png");
+        takeScreenShoot(driver, "C:\\selenium\\intelij-idea-practice-master\\image.png");
 
     }
 
@@ -47,13 +46,12 @@ public class MyFirstTest {
         Assert.assertTrue(driver.getTitle().contains("VnExpress"));
     }
 
-    @Test(description = "Test I created for ")
-    public void takeScreenShort(WebDriver webdriver,String fileWithPath) throws IOException {
+    public void takeScreenShoot(WebDriver webdriver, String fileWithPath) throws IOException {
         driver.get("https://vnexpress.net/");
 
         //Convert web driver object to TakeScreenshot
 
-        TakesScreenshot scrShot =((TakesScreenshot)driver);
+        TakesScreenshot scrShot =((TakesScreenshot)webdriver);
 
         //Call getScreenshotAs method to create image file
 
