@@ -9,14 +9,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import package1.DriverFactory;
-
-import javax.imageio.ImageIO;
-import java.io.File;
+import sun.reflect.misc.FieldUtil;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import java.io.File;
 
 public class MyFirstTest {
 
@@ -35,6 +34,12 @@ public class MyFirstTest {
 
     }
 
+    @Test
+    public  void TakeScreenshottoFile ()throws IOException {
+        takeScreenShort(driver, "C:\\selenium\\intelij-idea-practice-master\\image");
+
+    }
+
     @Test(description = "Test I created for ")
     public void firstTestNG() {
         driver.get("https://vnexpress.net/");
@@ -43,18 +48,29 @@ public class MyFirstTest {
     }
 
     @Test(description = "Test I created for ")
-    public void takeScreenShort() throws IOException {
+    public void takeScreenShort(WebDriver webdriver,String fileWithPath) throws IOException {
         driver.get("https://vnexpress.net/");
-        TakesScreenshot tkss = (TakesScreenshot) driver;
-        File vnExpressHomePage = tkss.getScreenshotAs(OutputType.FILE);
-        Path outputScreenshot =  Paths.get("output/vn-express" + System.currentTimeMillis() + ".png");
+
+        //Convert web driver object to TakeScreenshot
+
+        TakesScreenshot scrShot =((TakesScreenshot)driver);
+
+        //Call getScreenshotAs method to create image file
+
+        File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+
+        //Move image file to new destination
+
+        File DestFile=new File(fileWithPath);
 
         //Copy file at destination
-        Files.copy(Paths.get(vnExpressHomePage.getPath()),outputScreenshot);
 
-        // ImageIO.write(screenshot.getImage(), "jpg", new File(".\\screenshot\\fullimage.jpg"));
-        // Assert
-        Assert.assertTrue(driver.getTitle().contains("VnExpress"));
+        FileUtils.copyFile(SrcFile, DestFile);
+
+
+
+
     }
+
 
 }
