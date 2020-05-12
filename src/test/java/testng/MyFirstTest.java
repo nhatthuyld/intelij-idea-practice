@@ -36,7 +36,7 @@ public class MyFirstTest {
 
     @Test
     public  void TakeScreenshottoFile ()throws IOException {
-        takeScreenShort(driver, "C:\\selenium\\intelij-idea-practice-master\\image");
+        takeScreenShort(driver, "C:\\selenium\\intelij-idea-practice-master\\image.pnj");
 
     }
 
