@@ -4,9 +4,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import package1.DriverFactory;
 
 import java.io.IOException;
@@ -20,13 +18,13 @@ public class MyFirstTest {
 
     private WebDriver driver;
 
-    @BeforeMethod
+    @BeforeClass
     public void SetUp() {
         driver = DriverFactory.getChromeDriver();
 
     }
 
-    @AfterMethod
+    @AfterClass
     public void afterMethod() {
         driver.close();
 
@@ -64,9 +62,6 @@ public class MyFirstTest {
         //Copy file at destination
 
         FileUtils.copyFile(SrcFile, DestFile);
-
-
-
 
     }
 
